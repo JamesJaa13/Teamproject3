@@ -1,0 +1,58 @@
+
+services:
+  app:
+    build: ./my-laravel-app
+    container_name: laravel_app
+    working_dir: /var/www
+    volumes:
+      - ./my-laravel-app:/var/www
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - APP_KEY=
+    depends_on:
+      - db
+    networks:
+      - laravel_network
+    ports:
+      - "8000:8000"
+    command: php artisan serve --host=0.0.0.0 --port=8000
+
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3306:3306"
+    networks:
+      - laravel_network
+    volumes:
+      - db_data:/var/lib/mysql
+  frontend:
+    build: ./my-app
+    container_name: angular_frontend
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./my-app:/usr/src/app
+      - /usr/src/app/node_modules
+    working_dir: /usr/src/app
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - app
+    networks:
+      - laravel_network
+    command: npm start
+   
+
+networks:
+  laravel_network:
+
+volumes:
+  db_data:
