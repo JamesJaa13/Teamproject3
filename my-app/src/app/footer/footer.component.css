@@ -1,0 +1,50 @@
+.footer {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: #203864; /* สีฟ้าหรือสีน้ำเงิน */
+}
+
+.footer h5 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.footer .list-unstyled li {
+  margin-bottom: 10px;
+}
+
+.footer .list-unstyled a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer .list-unstyled a:hover {
+  color: #ffb3b3; /* สีเปลี่ยนเมื่อ hover */
+}
+
+.footer .form-control {
+  width: 100%;
+}
+
+.text-custom {
+  color: #F79B5B !important;
+}
+/* เปลี่ยนสีข้อความใน li ให้เป็น F79B5B */
+ul.list-unstyled li {
+  color: #F79B5B;
+}
+
+/* เปลี่ยนสีไอคอนให้เป็นสีเดียวกัน */
+ul.list-unstyled li i {
+  color: #F79B5B;
+}
+
+/* กำหนดสีของเบอร์โทรศัพท์ให้เป็นสีขาว */
+ul.list-unstyled li.phone {
+  color: white;
+}
+
+ul.list-unstyled li.phone i {
+  color: white;
+}
